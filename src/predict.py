@@ -4,6 +4,8 @@ import pickle
 from pathlib import Path
 from typing import Any, Dict
 
+import streamlit as st
+
 from src.preprocessing import build_feature_frame
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,6 +15,7 @@ PREPROCESSOR_PATH = MODEL_DIR / "preprocessor.pkl"
 FEATURE_NAMES_PATH = MODEL_DIR / "feature_names.pkl"
 
 
+@st.cache_resource
 def load_model_artifacts():
     with MODEL_PATH.open("rb") as model_file:
         model = pickle.load(model_file)

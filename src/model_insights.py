@@ -15,6 +15,7 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 import pandas as pd
+import streamlit as st
 
 from src.predict import (
     FEATURE_NAMES_PATH,
@@ -51,6 +52,7 @@ def load_dataset() -> pd.DataFrame:
     return pd.read_csv(DATA_PATH)
 
 
+@st.cache_data
 def get_dataset_predictions() -> pd.DataFrame:
     """Runs the real trained model over the historical dataset once, so KPI
     cards and analytics charts reflect actual model behavior instead of
